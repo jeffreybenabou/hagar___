@@ -1,0 +1,21 @@
+#drawer{
+
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right:0;
+    background-color: #f5f1ea;
+
+
+}
+.drawer_button_div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    border: transparent;
+    background-color: #f5f1ea;
+}
+.drawer_button_image{
+    width:4rem;
+}

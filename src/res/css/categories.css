@@ -1,0 +1,32 @@
+#category_main_div{
+    display: flex;
+    flex:1;
+    flex-direction: row;
+    margin-bottom: 2rem;
+}
+.image_on_category_button{
+        width:33%;
+    align-items: center;
+    justify-content: center;
+}
+.category_button{
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+
+}
+.text_on_category_button{
+    font-size:1vw;
+    position: absolute;
+    display: flex;
+    color:white;
+    margin-top: 1%;
+    margin-right: 0.5%;
+
+    flex:1;
+    align-self:center;
+
+}

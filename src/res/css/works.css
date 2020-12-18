@@ -1,0 +1,39 @@
+.work_main_div{
+    flex:1;
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: center;
+
+
+}
+#left_side_work_container{
+     margin-left: 1rem;
+     margin-right: 5rem;
+
+ }
+.floating_text_on_image{
+    font-size: 2rem;
+    position: absolute;
+    display: flex;
+
+    flex:1;
+    align-self: center;
+
+
+}
+#right_side_work_container{
+    margin-right: 1rem;
+    margin-left: 5rem;
+}
+.work_img{
+    width:100%;
+    border-radius: 2rem;
+    opacity: var(--opacity);
+}
+
+#work_frame{
+    border-radius: 5vw;
+    display: flex;
+    flex-direction: row;
+}

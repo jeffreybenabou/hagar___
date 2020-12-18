@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import {TransformWrapper, TransformComponent} from "react-zoom-pan-pinch";
 
 import contact from './res/images/contact.png'
 import about from './res/images/about.png'
@@ -39,8 +39,14 @@ import print1 from './res/images/print/1.jpg'
 import print2 from './res/images/print/2.jpg'
 import print3 from './res/images/print/3.jpg'
 import './res/css/effects.css';
+import './res/css/upper_div.css'
+import './res/css/drawer.css'
+import './res/css/categories.css'
+import './res/css/works.css'
+
 import Popup from 'reactjs-popup';
 
+/*
 
 const App = () => {
 
@@ -371,6 +377,265 @@ const App = () => {
 
     );
 
+}
+*/
+const DrawerButton = (props) => {
+
+    return <button onClick={props.onClick} className={"drawer_button_div"}>
+        {
+            props.showText &&
+            <div>
+                {props.textToShow}
+            </div>
+        }
+        <img className={"drawer_button_image"} src={props.image}>
+
+        </img>
+
+
+    </button>
+}
+const Drawer = () => {
+    const [showText, setShowText] = useState(false)
+    return <div id={"drawer"}>
+        <DrawerButton
+            onClick={() => {
+                setShowText(!showText);
+            }}
+            image={drawer}
+        />
+        <DrawerButton
+            textToShow={"אודות"}
+            showText={showText}
+            image={about}
+        />
+        <DrawerButton
+            textToShow={"צור קשר"}
+            showText={showText}
+            image={message}
+        />
+        <DrawerButton
+            textToShow={"0523080322"}
+            showText={showText}
+            image={contact}
+        />
+    </div>
+}
+
+const CategoryButton = (props) => {
+    return <button className={"category_button"}>
+        <div className={"text_on_category_button"}>
+            {props.title}
+        </div>
+        <img
+            className={"image_on_category_button"}
+            src={background}/>
+    </button>
+}
+const CategoryButtons = () => {
+
+    return <div id={"category_main_div"}>
+        <CategoryButton title={"ALL"}/>
+        <CategoryButton title={"LOGO"}/>
+        <CategoryButton title={"PRINT"}/>
+        <CategoryButton title={"UI / UX"}/>
+    </div>
+}
+
+const Info = (props) => {
+    return <div id={"info"}>
+        <img src={portofolio} id={"portofolio"}/>
+        <div id={"text_on_header"}>גלול מטה כדי לראות את העבודות</div>
+        <img id={"down_arrow"} src={downArrow}/>
+        <CategoryButtons/>
+        <Works/>
+    </div>
+}
+
+const Works = () => {
+    const [UIUX, setUIUX] = useState([
+        {
+            title: 'test',
+            img: uiux1,
+            mockUp: uiux11
+        },
+        {
+            title: 'test',
+            img: uiux2
+        },
+
+        {
+            title: '',
+            img: uiux4,
+            mockUp: uiux5
+        },
+        {
+            title: '',
+            img: uiux6,
+            mockUp: uiux61
+        },
+        {
+            title: '',
+            img: uiux7,
+            mockUp: uiux71
+        },
+        {
+            title: '',
+            img: uiux122,
+            mockUp: uiux122
+        },
+        {
+            title: '',
+            img: uiux8,
+            mockUp: uiux81
+        },
+        {
+            title: '',
+            img: uiux9,
+            mockUp: uiux91
+        },
+        {
+            title: '',
+            img: uiux10,
+            mockUp: uiux101
+        },
+
+        {
+            title: '',
+            img: uiux111,
+            mockUp: uiux112
+        },
+    ]);
+    const [print, setPrint] = useState([
+        {
+            title: 'test',
+            img: print1,
+            mockUp: print1
+        },
+        {
+            title: '',
+            img: print2,
+            mockUp: print2
+        },
+        {
+            title: '',
+            img: print3,
+            mockUp: print3
+        },
+
+    ]);
+    const [logo, setLogo] = useState([
+        {
+            title: '',
+            img: logo1,
+            mockUp: logo1
+        },
+        {
+            title: '',
+            img: logo2,
+            mockUp: logo2
+        },
+        {
+            title: 'test',
+            img: logo3,
+            mockUp: logo3
+        },
+        {
+            title: 'test',
+            img: logo4,
+            mockUp: logo4
+        },
+        {
+            title: 'test',
+            img: logo5,
+            mockUp: logo5
+        },
+        {
+            title: '',
+            img: logo6,
+            mockUp: logo6
+        },
+    ]);
+    const [all, setAll] = useState(() => {
+        const data = [];
+        UIUX.map((item) => {
+            data.push(item)
+        })
+        print.map((item) => {
+            data.push(item)
+        })
+        logo.map((item) => {
+            data.push(item)
+        })
+        return data
+    });
+    const [currentArray, setCurrentArray] = useState(all);
+
+    return <div id={"work_frame"}>
+        <div id={"right_side_work_container"}>
+            {
+                currentArray.map((item, index) => {
+                    return index % 2 == 0 && <Work item={item}/>
+                })
+            }
+        </div>
+
+        <div id={"left_side_work_container"}>
+            {
+                currentArray.map((item, index) => {
+                    return index % 2 == 1 && <Work item={item}/>
+                })
+            }
+        </div>
+
+    </div>
+}
+
+const Work = (props) => {
+    const [showText, setShowText] = useState(false);
+    return <div
+        onMouseOver={() => {
+            setShowText(true)
+        }}
+        onMouseOut={() => {
+            setShowText(false)
+        }}
+        className={"work_main_div"}>
+        <img
+            style={{"--opacity": showText ? 0.5 : 1}}
+            className={"work_img"}
+            src={props.item.img}
+        />
+        {
+            showText &&
+            <div
+                onMouseEnter={() => {
+                    setShowText(true)
+                }}
+
+                onMouseOut={() => {
+                    console.log("asfasf")
+                    setShowText(true)
+                }}
+                className={"floating_text_on_image"}>
+                {props.item.title}
+            </div>
+        }
+
+    </div>
+}
+const Header = (props) => {
+    return <div id={"header"}>
+        <Info/>
+        <Drawer/>
+
+    </div>
+}
+
+const App = (props) => {
+    return <div id={"main_div"}>
+        <Header/>
+    </div>
 }
 
 export default App;

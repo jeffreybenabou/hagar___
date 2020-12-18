@@ -275,10 +275,7 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .work {
-
         margin: 2%;
-
-
         height: 13rem;
     }
 
