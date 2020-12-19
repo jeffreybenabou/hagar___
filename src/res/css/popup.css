@@ -6,12 +6,21 @@
     align-items: center;
     justify-content: center;
 }
+#exit_button{
+    font-size: 1.5rem;
+    border-color: transparent;
+    outline: transparent;
+    width:2rem;
+    top:3%;
+    left:3%;
+    background-color:transparent;
+    z-index: 100;
+    position: absolute;
+}
 
 @media only screen and (max-width: 600px) {
     .popup-content {
-
         width: 95vw;
-
     }
 
 }

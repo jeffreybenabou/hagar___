@@ -11,23 +11,20 @@ import portofolio from "./res/images/portofolio.png"
 import downArrow from "./res/images/arrow.png"
 import background from './res/images/background.png'
 import uiux1 from './res/images/uiux/1.jpg'
-import uiux11 from './res/images/uiux/3.jpg'
 import uiux2 from './res/images/uiux/2.jpg'
+import uiux11 from './res/images/uiux/3.jpg'
 import uiux4 from './res/images/uiux/4.jpg'
 import uiux5 from './res/images/uiux/5.jpg'
 import uiux6 from './res/images/uiux/6.jpg'
 import uiux61 from './res/images/uiux/61.jpg'
 import uiux7 from './res/images/uiux/7.jpg'
 import uiux71 from './res/images/uiux/71.jpg'
-import uiux8 from './res/images/uiux/8.jpg'
-import uiux81 from './res/images/uiux/81.jpg'
 import uiux9 from './res/images/uiux/9.jpg'
 import uiux91 from './res/images/uiux/91.jpg'
-import uiux10 from './res/images/uiux/10.jpg'
-import uiux101 from './res/images/uiux/101.jpg'
-import uiux111 from './res/images/uiux/11.jpg'
-import uiux112 from './res/images/uiux/111.jpg'
+
+
 import uiux122 from './res/images/uiux/122.jpg'
+
 import logo1 from './res/images/logo/logo1.jpg'
 import logo2 from './res/images/logo/logo2.jpg'
 import logo3 from './res/images/logo/logo3.jpg'
@@ -38,9 +35,8 @@ import logo6 from './res/images/logo/logo6.jpg'
 import print1 from './res/images/print/1.jpg'
 import print2 from './res/images/print/2.jpg'
 import print3 from './res/images/print/3.jpg'
-import secondCategory from './res/images/secondCategory.png'
-import thirdCategory from './res/images/thirdCategory.png'
-import firstCategory from './res/images/firstCategory.png'
+
+import exit from './res/images/exit.png'
 import "./res/css/popup.css"
 import './res/css/upper_div.css'
 import './res/css/drawer.css'
@@ -58,7 +54,8 @@ const App = (props) => {
         },
         {
             title: 'test',
-            img: uiux2
+            img: uiux2,
+            mockUp: uiux2
         },
 
         {
@@ -81,27 +78,14 @@ const App = (props) => {
             img: uiux122,
             mockUp: uiux122
         },
-        {
-            title: '',
-            img: uiux8,
-            mockUp: uiux81
-        },
+
         {
             title: '',
             img: uiux9,
             mockUp: uiux91
         },
-        {
-            title: '',
-            img: uiux10,
-            mockUp: uiux101
-        },
 
-        {
-            title: '',
-            img: uiux111,
-            mockUp: uiux112
-        },
+
     ]);
     const [print, setPrint] = useState([
         {
@@ -190,7 +174,7 @@ const App = (props) => {
     }
     const Drawer = () => {
 
-        return  <div
+        return <div
             id={"drawer"}
             style={{
                 "--width": showText ? "50%" : 0,
@@ -235,7 +219,7 @@ const App = (props) => {
             className={"category_button"}>
             <div
                 style={{
-                    color: currentCategory == props.index?"white":"#4b5556"
+                    color: currentCategory == props.index ? "white" : "#4b5556"
                 }}
                 className={"text_on_category_button"}>
                 {props.title}
@@ -393,22 +377,15 @@ const App = (props) => {
 
                 <TransformComponent transformEnabled={true}>
                     <img style={{borderRadius: '5vh', width: '100%'}} src={popup.mockUp}/>
-                    <button onClick={() => {
-                        setPopup({visible: false})
-                    }} style={{
-                        fontSize: "1.5rem",
-                        borderColor: 'transparent',
-                        outline: 'transparent',
-                        height: '1.5rem',
-                        backgroundColor: 'transparent',
-                        zIndex: 100,
-                        position: 'absolute',
-                        top: "1rem",
-                        right: 0,
-                        left: "1rem",
-                        bottom: 0
-                    }}>
-                        x
+                    <button
+                        onClick={() => {
+                            setPopup({visible: false})
+                        }}
+                        id={"exit_button"}
+                        >
+                        <img
+                            src={exit}
+                            style={{width: '100%'}}/>
                     </button>
                 </TransformComponent>
             </TransformWrapper>
