@@ -6,11 +6,18 @@
     position: fixed;
     right:0;
     background-color:#f5f1ea;
-    
-}
-#main_drawer_button{
 
 }
+#main_drawer_button_image{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+
+    width:2rem;
+    height:1.5rem;
+
+}
+
 .drawer_button_div{
     display: flex;
     flex-direction: row;
@@ -21,22 +28,50 @@
     outline: transparent;
     font-family: 'Open Sans Hebrew Condensed', serif;
     color: #4b5556;
+    margin-right: 0.5rem;
+    font-size:1rem;
 }
 .drawer_button_image{
     width:4rem;
 }
+#main_drawer_button_div_close{
 
+    visibility: hidden;
+}
 
 @media only screen and (max-width: 600px) {
+    #drawer_background_line{
+        width: 100vw;
+        position: fixed;
+        display: flex;
+        background-color:rgba(245, 241, 234,0.9);
+        height:4rem;
+        justify-content: flex-end;
+    }
     #drawer{
         background-color:var(--backgroundColor);
-        width:50%;
+        width:var(--width);
         height:100%;
-
         right:0;
         box-shadow: var(--boxShadow);
-
     }
+    #main_drawer_button_div_close{
+
+        visibility: visible;
+    }
+    #main_drawer_button_div{
+        visibility: var("--visibility");
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    #main_drawer_button_image{
+        width:2.1rem;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        margin-right:0.2rem;
+        height:1.6rem;
+    }
+
     .drawer_button_div{
         visibility: var(--visibility);
     }

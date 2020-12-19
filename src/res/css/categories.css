@@ -5,9 +5,11 @@
     flex:1;
     flex-direction: row;
     margin-bottom: 2rem;
+    width: 30vw;
+
 }
 .image_on_category_button{
-        width:33%;
+    width:100%;
     align-items: center;
     justify-content: center;
 }
@@ -17,12 +19,13 @@
     align-items: center;
     justify-content: center;
     display: flex;
+    flex:1;
+    outline: transparent;
 }
 .text_on_category_button{
-    font-size:1vw;
+    font-size:1.2vw;
     position: absolute;
     display: flex;
-    color:white;
     margin-top: 1%;
     margin-right: 0.5%;
     font-family: 'Open Sans Hebrew Condensed', serif;
@@ -30,35 +33,52 @@
     align-self:center;
 
 }
+
 @media only screen and (max-width: 600px) {
     .image_on_category_button{
-        width:100%;
+        width: 100%;
+    }
+
+    #category_main_div{
+        width: 95vw;
     }
     .text_on_category_button{
         font-size:0.9rem;
-        margin-top: 4%;
+        margin-top: 0.5rem;
         margin-right: 1.5%;
-
     }
+    .category_button{
+
+        flex:1;
+    }
+
 }
-
 @media only screen and (min-width: 600px) {
-
+    #category_main_div{
+        width: 45vw;
+    }
 
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-
+    #category_main_div{
+        width: 35vw;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-
+    #category_main_div{
+        width: 30vw;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 
+    #category_main_div{
+        width: 30%;
+    }
 }
 

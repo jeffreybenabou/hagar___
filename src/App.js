@@ -38,7 +38,9 @@ import logo6 from './res/images/logo/logo6.jpg'
 import print1 from './res/images/print/1.jpg'
 import print2 from './res/images/print/2.jpg'
 import print3 from './res/images/print/3.jpg'
-
+import secondCategory from './res/images/secondCategory.png'
+import thirdCategory from './res/images/thirdCategory.png'
+import firstCategory from './res/images/firstCategory.png'
 import "./res/css/popup.css"
 import './res/css/upper_div.css'
 import './res/css/drawer.css'
@@ -165,21 +167,21 @@ const App = (props) => {
         return data
     });
     const [currentArray, setCurrentArray] = useState(all);
-
+    const [currentCategory, setCurrentCategory] = useState(0);
     const DrawerButton = (props) => {
 
         return <button
-            id={"main_drawer_button"}
+            id={props.id}
             onClick={props.onClick}
             style={props.style}
             className={"drawer_button_div"}>
             {
                 props.showText &&
-                <div>
+                <div style={{marginRight: "0.5rem"}}>
                     {props.textToShow}
                 </div>
             }
-            <img className={"drawer_button_image"} src={props.image}>
+            <img id={props.imageId} className={"drawer_button_image"} src={props.image}>
 
             </img>
 
@@ -188,29 +190,38 @@ const App = (props) => {
     }
     const Drawer = () => {
 
-        return <div  id={"drawer"} style={{"--boxShadow":showText?"5px 5px 1rem 0rem #d7d7d7":undefined,"--backgroundColor":showText?"white":'transparent'}} >
+        return  <div
+            id={"drawer"}
+            style={{
+                "--width": showText ? "50%" : 0,
+                "--boxShadow": showText ? "5px 5px 1rem 0rem #d7d7d7" : undefined,
+                "--backgroundColor": showText ? "#f5f1ea" : 'transparent'
+            }}>
+
             <DrawerButton
-                id={"main_drawer_button"}
+                id={"main_drawer_button_div"}
+                style={{"--visibility": showText ? "visible" : 'hidden'}}
+                imageId={"main_drawer_button_image"}
                 onClick={() => {
                     setShowText(!showText);
                 }}
                 image={drawer}
             />
             <DrawerButton
-                style={{"--visibility":showText?"visible":'hidden'}}
+                style={{"--visibility": showText ? "visible" : 'hidden'}}
                 textToShow={"אודות"}
                 showText={showText}
                 image={about}
             />
             <DrawerButton
-                style={{"--visibility":showText?"visible":'hidden'}}
+                style={{"--visibility": showText ? "visible" : 'hidden'}}
                 textToShow={"צור קשר"}
                 showText={showText}
                 image={message}
             />
             <DrawerButton
-                style={{"--visibility":showText?"visible":'hidden'}}
-                textToShow={"0523080322"}
+                style={{"--visibility": showText ? "visible" : 'hidden'}}
+                textToShow={"חייגו אליי"}
                 showText={showText}
                 image={contact}
             />
@@ -218,45 +229,64 @@ const App = (props) => {
     }
 
     const CategoryButton = (props) => {
-        return <button onClick={props.onClick} className={"category_button"}>
-            <div className={"text_on_category_button"}>
+
+        return <button
+            onClick={props.onClick}
+            className={"category_button"}>
+            <div
+                style={{
+                    color: currentCategory == props.index?"white":"#4b5556"
+                }}
+                className={"text_on_category_button"}>
                 {props.title}
             </div>
-            <img
-                className={"image_on_category_button"}
-                src={background}/>
+            {
+                currentCategory == props.index &&
+                <img
+                    className={"image_on_category_button"}
+                    src={background}/>
+            }
+
         </button>
     }
     const CategoryButtons = () => {
 
         return <div id={"category_main_div"}>
             <CategoryButton
+                index={0}
                 onClick={() => {
-                    setCurrentArray(all)
+                    setCurrentArray(all);
+                    setCurrentCategory(0);
                 }}
                 title={"ALL"}/>
             <CategoryButton
+                index={1}
                 onClick={() => {
                     setCurrentArray(logo)
+                    setCurrentCategory(1);
                 }}
                 title={"LOGO"}/>
             <CategoryButton
+                index={2}
                 onClick={() => {
-                    setCurrentArray(print)
+                    setCurrentArray(print);
+                    setCurrentCategory(2);
                 }}
                 title={"PRINT"}/>
             <CategoryButton
+                index={3}
                 onClick={() => {
-                    setCurrentArray(UIUX)
+                    setCurrentArray(UIUX);
+                    setCurrentCategory(3);
                 }}
                 title={"UI / UX"}/>
         </div>
     }
 
     const Info = (props) => {
-        return <div onClick={()=>{
+        return <div onClick={() => {
             setShowText(false)
-        }} id={"info"} style={{"--filter":showText?"blur(3px)":undefined,}}>
+        }} id={"info"} style={{"--filter": showText ? "blur(3px)" : undefined,}}>
             <img src={portofolio} id={"portofolio"}/>
             <div id={"text_on_header"}>גלול מטה כדי לראות את העבודות</div>
             <img id={"down_arrow"} src={downArrow}/>
@@ -328,6 +358,16 @@ const App = (props) => {
     const Header = (props) => {
         return <div id={"header"}>
             <Info/>
+            <div id={"drawer_background_line"}>
+                <DrawerButton
+                    id={"main_drawer_button_div_close"}
+                    imageId={"main_drawer_button_image"}
+                    onClick={() => {
+                        setShowText(!showText);
+                    }}
+                    image={drawer}
+                />
+            </div>
             <Drawer/>
 
         </div>
@@ -349,11 +389,25 @@ const App = (props) => {
 
             <TransformWrapper
                 wheel={{wheelEnabled: true}}
-                >
+            >
 
                 <TransformComponent transformEnabled={true}>
-                    <img style={{borderRadius: '5vh',width:'100%'}} src={popup.mockUp}/>
-                    <button onClick={()=>{setPopup({visible: false})}} style={{fontSize:"1.5rem",borderColor:'transparent',outline:'transparent',height:'1.5rem',backgroundColor:'transparent',zIndex:100,position:'absolute',top:"1rem",right:0,left:"1rem",bottom:0}}>
+                    <img style={{borderRadius: '5vh', width: '100%'}} src={popup.mockUp}/>
+                    <button onClick={() => {
+                        setPopup({visible: false})
+                    }} style={{
+                        fontSize: "1.5rem",
+                        borderColor: 'transparent',
+                        outline: 'transparent',
+                        height: '1.5rem',
+                        backgroundColor: 'transparent',
+                        zIndex: 100,
+                        position: 'absolute',
+                        top: "1rem",
+                        right: 0,
+                        left: "1rem",
+                        bottom: 0
+                    }}>
                         x
                     </button>
                 </TransformComponent>
