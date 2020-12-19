@@ -1,11 +1,14 @@
-#drawer{
+@import url(https://fonts.googleapis.com/earlyaccess/opensanshebrewcondensed.css);
 
+#drawer{
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     right:0;
-    background-color: #f5f1ea;
-
+    background-color:#f5f1ea;
+    
+}
+#main_drawer_button{
 
 }
 .drawer_button_div{
@@ -14,8 +17,49 @@
     align-items: center;
     justify-content: flex-end;
     border: transparent;
-    background-color: #f5f1ea;
+    background-color: transparent;
+    outline: transparent;
+    font-family: 'Open Sans Hebrew Condensed', serif;
+    color: #4b5556;
 }
 .drawer_button_image{
     width:4rem;
 }
+
+
+@media only screen and (max-width: 600px) {
+    #drawer{
+        background-color:var(--backgroundColor);
+        width:50%;
+        height:100%;
+
+        right:0;
+        box-shadow: var(--boxShadow);
+
+    }
+    .drawer_button_div{
+        visibility: var(--visibility);
+    }
+
+}
+
+@media only screen and (min-width: 600px) {
+
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+

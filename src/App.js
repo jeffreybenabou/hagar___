@@ -38,7 +38,8 @@ import logo6 from './res/images/logo/logo6.jpg'
 import print1 from './res/images/print/1.jpg'
 import print2 from './res/images/print/2.jpg'
 import print3 from './res/images/print/3.jpg'
-import './res/css/effects.css';
+
+import "./res/css/popup.css"
 import './res/css/upper_div.css'
 import './res/css/drawer.css'
 import './res/css/categories.css'
@@ -379,80 +380,9 @@ const App = () => {
 
 }
 */
-const DrawerButton = (props) => {
-
-    return <button onClick={props.onClick} className={"drawer_button_div"}>
-        {
-            props.showText &&
-            <div>
-                {props.textToShow}
-            </div>
-        }
-        <img className={"drawer_button_image"} src={props.image}>
-
-        </img>
 
 
-    </button>
-}
-const Drawer = () => {
-    const [showText, setShowText] = useState(false)
-    return <div id={"drawer"}>
-        <DrawerButton
-            onClick={() => {
-                setShowText(!showText);
-            }}
-            image={drawer}
-        />
-        <DrawerButton
-            textToShow={"אודות"}
-            showText={showText}
-            image={about}
-        />
-        <DrawerButton
-            textToShow={"צור קשר"}
-            showText={showText}
-            image={message}
-        />
-        <DrawerButton
-            textToShow={"0523080322"}
-            showText={showText}
-            image={contact}
-        />
-    </div>
-}
-
-const CategoryButton = (props) => {
-    return <button className={"category_button"}>
-        <div className={"text_on_category_button"}>
-            {props.title}
-        </div>
-        <img
-            className={"image_on_category_button"}
-            src={background}/>
-    </button>
-}
-const CategoryButtons = () => {
-
-    return <div id={"category_main_div"}>
-        <CategoryButton title={"ALL"}/>
-        <CategoryButton title={"LOGO"}/>
-        <CategoryButton title={"PRINT"}/>
-        <CategoryButton title={"UI / UX"}/>
-    </div>
-}
-
-const Info = (props) => {
-    return <div id={"info"}>
-        <img src={portofolio} id={"portofolio"}/>
-        <div id={"text_on_header"}>גלול מטה כדי לראות את העבודות</div>
-        <img id={"down_arrow"} src={downArrow}/>
-        <CategoryButtons/>
-        <Works/>
-    </div>
-}
-
-const Works = () => {
+const App = (props) => {
     const [UIUX, setUIUX] = useState([
         {
             title: 'test',
@@ -571,69 +501,193 @@ const Works = () => {
     });
     const [currentArray, setCurrentArray] = useState(all);
 
-    return <div id={"work_frame"}>
-        <div id={"right_side_work_container"}>
+    const DrawerButton = (props) => {
+
+        return <button
+            id={"main_drawer_button"}
+            onClick={props.onClick}
+            style={props.style}
+            className={"drawer_button_div"}>
             {
-                currentArray.map((item, index) => {
-                    return index % 2 == 0 && <Work item={item}/>
-                })
+                props.showText &&
+                <div>
+                    {props.textToShow}
+                </div>
             }
-        </div>
+            <img className={"drawer_button_image"} src={props.image}>
 
-        <div id={"left_side_work_container"}>
-            {
-                currentArray.map((item, index) => {
-                    return index % 2 == 1 && <Work item={item}/>
-                })
-            }
-        </div>
+            </img>
 
-    </div>
-}
 
-const Work = (props) => {
-    const [showText, setShowText] = useState(false);
-    return <div
-        onMouseOver={() => {
-            setShowText(true)
-        }}
-        onMouseOut={() => {
-            setShowText(false)
-        }}
-        className={"work_main_div"}>
-        <img
-            style={{"--opacity": showText ? 0.5 : 1}}
-            className={"work_img"}
-            src={props.item.img}
-        />
-        {
-            showText &&
-            <div
-                onMouseEnter={() => {
-                    setShowText(true)
+        </button>
+    }
+    const Drawer = () => {
+
+        return <div id={"drawer"} style={{"--boxShadow":showText?"5px 5px 1rem 0rem #d7d7d7":undefined,"--backgroundColor":showText?"white":'transparent'}} >
+            <DrawerButton
+                id={"main_drawer_button"}
+                onClick={() => {
+                    setShowText(!showText);
                 }}
+                image={drawer}
+            />
+            <DrawerButton
+                style={{"--visibility":showText?"visible":'hidden'}}
+                textToShow={"אודות"}
+                showText={showText}
+                image={about}
+            />
+            <DrawerButton
+                style={{"--visibility":showText?"visible":'hidden'}}
+                textToShow={"צור קשר"}
+                showText={showText}
+                image={message}
+            />
+            <DrawerButton
+                style={{"--visibility":showText?"visible":'hidden'}}
+                textToShow={"0523080322"}
+                showText={showText}
+                image={contact}
+            />
+        </div>
+    }
 
-                onMouseOut={() => {
-                    console.log("asfasf")
-                    setShowText(true)
-                }}
-                className={"floating_text_on_image"}>
-                {props.item.title}
+    const CategoryButton = (props) => {
+        return <button onClick={props.onClick} className={"category_button"}>
+            <div className={"text_on_category_button"}>
+                {props.title}
             </div>
-        }
+            <img
+                className={"image_on_category_button"}
+                src={background}/>
+        </button>
+    }
+    const CategoryButtons = () => {
 
-    </div>
-}
-const Header = (props) => {
-    return <div id={"header"}>
-        <Info/>
-        <Drawer/>
+        return <div id={"category_main_div"}>
+            <CategoryButton
+                onClick={() => {
+                    setCurrentArray(all)
+                }}
+                title={"ALL"}/>
+            <CategoryButton
+                onClick={() => {
+                    setCurrentArray(logo)
+                }}
+                title={"LOGO"}/>
+            <CategoryButton
+                onClick={() => {
+                    setCurrentArray(print)
+                }}
+                title={"PRINT"}/>
+            <CategoryButton
+                onClick={() => {
+                    setCurrentArray(UIUX)
+                }}
+                title={"UI / UX"}/>
+        </div>
+    }
 
-    </div>
-}
+    const Info = (props) => {
+        return <div id={"info"} style={{"--filter":showText?"blur(3px)":undefined,}}>
+            <img src={portofolio} id={"portofolio"}/>
+            <div id={"text_on_header"}>גלול מטה כדי לראות את העבודות</div>
+            <img id={"down_arrow"} src={downArrow}/>
+            <CategoryButtons/>
+            <Works/>
+        </div>
+    }
 
-const App = (props) => {
+    const Works = () => {
+
+        return <div id={"work_frame"}>
+            <div id={"right_side_work_container"}>
+                {
+                    currentArray.map((item, index) => {
+                        return index % 2 == 0 && <Work item={item}/>
+                    })
+                }
+            </div>
+
+            <div id={"left_side_work_container"}>
+                {
+                    currentArray.map((item, index) => {
+                        return index % 2 == 1 && <Work item={item}/>
+                    })
+                }
+            </div>
+
+        </div>
+    }
+
+    const Work = (props) => {
+        const [showText, setShowText] = useState(false);
+        return <div
+            onMouseOver={() => {
+                setShowText(true)
+            }}
+            onMouseOut={() => {
+                setShowText(false)
+            }}
+            onClick={() => {
+                setPopup({
+                    visible: true,
+                    mockUp: props.item.mockUp
+                })
+            }}
+            className={"work_main_div"}>
+            <img
+                style={{"--opacity": showText ? 0.5 : 1}}
+                className={"work_img"}
+                src={props.item.img}
+            />
+            {
+                showText &&
+                <div
+                    onMouseEnter={() => {
+                        setShowText(true)
+                    }}
+
+                    onMouseOut={() => {
+                        setShowText(true)
+                    }}
+                    className={"floating_text_on_image"}>
+                    {props.item.title}
+                </div>
+            }
+
+        </div>
+    }
+    const Header = (props) => {
+        return <div id={"header"}>
+            <Info/>
+            <Drawer/>
+
+        </div>
+    }
+    const [popup, setPopup] = useState({visible: false, mockUp: ''})
+    const [showText, setShowText] = useState(false)
     return <div id={"main_div"}>
+        <Popup
+            overlayStyle={{background: 'rgba(255, 255, 255,0.8)'}}
+            open={popup.visible}
+            onClose={() => {
+                setPopup({visible: false, mockUp: ''})
+            }}
+
+
+        >
+
+            <TransformWrapper
+                wheel={{wheelEnabled: true}}
+                >
+
+                <TransformComponent transformEnabled={true}>
+                    <img style={{borderRadius: '5vh',width:'100%'}} src={popup.mockUp}/>
+                </TransformComponent>
+            </TransformWrapper>
+
+        </Popup>
         <Header/>
     </div>
 }

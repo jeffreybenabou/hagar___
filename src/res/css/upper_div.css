@@ -1,26 +1,70 @@
-#main_div{
-    flex:1;
+@import url(https://fonts.googleapis.com/earlyaccess/opensanshebrewcondensed.css);
+
+#main_div {
+    flex: 1;
     display: flex;
 
 }
-#header{
-    flex:1;
+
+#header {
+
+
+    flex: 1;
     display: flex;
 }
 
-#text_on_header{
+#portofolio {
+    width: 30vw;
+}
+
+#text_on_header {
     font-size: 1.2rem;
     font-family: 'Open Sans Hebrew Condensed', serif;
+    color: #4b5556;
 }
-#info{
-    flex:5;
+
+#info {
+    filter: var(--filter);
+    flex: 5;
     display: flex;
     align-items: center;
     margin-top: 5rem;
     flex-direction: column;
 }
-#down_arrow{
+
+#down_arrow {
     margin-top: 5rem;
-    width:5rem;
+    width: 5rem;
 
 }
+
+@media only screen and (max-width: 600px) {
+    #portofolio {
+        width: 80vw;
+    }
+
+    #down_arrow {
+        width: 6rem;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+
