@@ -47,341 +47,6 @@ import './res/css/works.css'
 
 import Popup from 'reactjs-popup';
 
-/*
-
-const App = () => {
-
-    const [showDrawer, setShowDrawer] = useState(false);
-    const [currentCategory, setCurrentCategory] = useState(0);
-    const [UIUX, setUIUX] = useState([
-        {
-            title: '',
-            img: uiux1,
-            mockUp:uiux11
-        },
-        {
-            title: '',
-            img: uiux2
-        },
-
-        {
-            title: '',
-            img: uiux4,
-            mockUp:uiux5
-        },
-        {
-            title: '',
-            img: uiux6,
-            mockUp:uiux61
-        },
-        {
-            title: '',
-            img: uiux7,
-            mockUp:uiux71
-        },
-        {
-            title: '',
-            img: uiux122,
-            mockUp:uiux122
-        },
-        {
-            title: '',
-            img: uiux8,
-            mockUp:uiux81
-        },
-        {
-            title: '',
-            img: uiux9,
-            mockUp:uiux91
-        },
-        {
-            title: '',
-            img: uiux10,
-            mockUp:uiux101
-        },
-
-        {
-            title: '',
-            img: uiux111,
-            mockUp:uiux112
-        },
-    ]);
-    const [print, setPrint] = useState([
-        {
-            title: '',
-            img: print1,
-            mockUp:print1
-        },
-        {
-            title: '',
-            img: print2,
-            mockUp:print2
-        },
-        {
-            title: '',
-            img: print3,
-            mockUp:print3
-        },
-
-    ]);
-    const [logo, setLogo] = useState([
-        {
-            title: '',
-            img: logo1,
-            mockUp:logo1
-        },
-        {
-            title: '',
-            img: logo2,
-            mockUp:logo2
-        },
-        {
-            title: '',
-            img: logo3,
-            mockUp:logo3
-        },
-        {
-            title: '',
-            img: logo4,
-            mockUp:logo4
-        },
-        {
-            title: '',
-            img: logo5,
-            mockUp:logo5
-        },
-        {
-            title: '',
-            img: logo6,
-            mockUp:logo6
-        },
-    ]);
-    const [all, setAll] = useState(()=>{
-        const data=[];
-        UIUX.map((item)=>{
-            data.push(item)
-        })
-        print.map((item)=>{
-            data.push(item)
-        })
-        logo.map((item)=>{
-            data.push(item)
-        })
-        return data
-    });
-    const [currentArray, setCurrentArray] = useState(all);
-    const [openPopup,setOpenPopup]=useState({visible:false})
-    const ShowButton = (props) => {
-        return <div
-            id={props.id}
-            className={"drawer_button"}
-            style={{
-                "--hidden": showDrawer ? 'visible' : 'hidden',
-            }}>
-            {
-                props.text.length > 0 &&
-                <div className={showDrawer ? "drawer" : !showDrawer && "drawer_close"}>{props.text}</div>
-            }
-
-            <button
-                onClick={props.onClick}
-                style={{zIndex: 10, backgroundColor: 'transparent', borderColor: 'transparent', borderWidth: 0}}>
-                <img id={props.id + "_image"} src={props.icon} className={"image_on_drawer"}/>
-            </button>
-
-        </div>
-    }
-
-    const CategoryButton = (props) => {
-        return <button onClick={props.action} className={"button_with_image_div"}>
-
-            <div className={"text_on_button_with_background"} style={{
-                color: currentCategory == props.index ? "white" : '#5F777F'
-            }}>
-                {props.title}
-            </div>
-            {
-                currentCategory == props.index &&
-                <img className={"button_with_background"} src={background}>
-
-                </img>
-            }
-
-
-        </button>
-    }
-    const ItemToShow = (item) => {
-        const [visible, setVisible] = useState(false)
-        return <div
-            onClick={()=>{
-                setOpenPopup({visible:true,mockUp:item.item.mockUp})
-            }}
-            onMouseOut={() => {
-                setVisible(false);
-            }}
-            onMouseOver={() => {
-                setVisible(true);
-            }}
-            className={"work"}>
-            <img
-                style={{
-                    height: '100%',
-                    width: '100%',
-                    borderRadius:'5vh'
-                }}
-                src={item.item.img}/>
-            <div
-                className={"text_on_image"}
-                style={{
-                    "--hidden": !visible?'hidden':'visible',
-                }}
-            >
-                text
-            </div>
-        </div>
-    }
-    const ALL = () => {
-        return <div id={"main_div_of_work"}>
-            <div style={{flex: 1, display: 'flex', flexDirection: 'column'}}>
-                {
-                    currentArray.map((item, index) => {
-
-                        return index % 2 == 0 && <ItemToShow item={item}/>
-                    })
-                }
-            </div>
-            <div style={{flex: 1, display: 'flex', flexDirection: 'column', width: '100%'}}>
-                {
-                    currentArray.map((item, index) => {
-                        return index % 2 == 1 && <ItemToShow item={item}/>
-                    })
-                }
-            </div>
-
-        </div>
-    }
-
-
-    return (
-
-        <div style={{backgroundColor: '#f5f1ea', flex: 1, display: 'flex'}}>
-
-            <Popup
-                lockScroll={true}
-                overlayStyle={{background:'rgba(255, 255, 255,0.8)'}}
-                open={openPopup.visible} onClose={()=>{
-                setOpenPopup({visible:false})
-            }}
-                position="center center"
-
-            >
-                <TransformWrapper wheel={{wheelEnabled:true}} enablePadding={true} enablePanPadding={true}>
-                    <TransformComponent  transformEnabled={true}>
-                <img style={{  borderRadius:'5vh',height:'95vh'}} src={openPopup.mockUp}/>
-                    </TransformComponent>
-                </TransformWrapper>
-
-            </Popup>
-            <div style={{
-                filter: showDrawer ? 'blur(8px)' : undefined,
-                flex: 10,
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
-
-                <div style={{display: 'flex', flex: 2}}>
-                    hj
-                </div>
-                <div style={{
-
-                    flexDirection: 'column',
-                    marginTop: '5vh',
-                    alignItems: 'center',
-                    justifyContent: 'flex-start',
-                    display: 'flex',
-                    flex: 10,
-                    backgroundColor: '#f5f1ea',
-                }}>
-                    <img id={"portofolio"} src={portofolio}/>
-                    <div id={"text_on_top"}>גלול מטה כדי לראות את כל העבודות</div>
-                    <button style={{marginTop: '12vh', borderColor: 'transparent', backgroundColor: 'transparent'}}>
-                        <img style={{height: '2.2cm'}} src={downArrow}/>
-                    </button>
-
-                    <div id={"div_of_buttons"} style={{marginTop: '10vh',}}>
-                        <CategoryButton title={"ALL  "} action={() => {
-                            setCurrentCategory(0)
-                            setCurrentArray(all);
-                        }} index={0}/>
-                        <CategoryButton title={"LOGO"} action={() => {
-                            setCurrentCategory(1);
-                            setCurrentArray(logo);
-                        }} index={1}/>
-                        <CategoryButton title={"PRINT"} action={() => {
-                            setCurrentCategory(2);
-                            setCurrentArray(print);
-                        }} index={2}/>
-                        <CategoryButton title={"UI/UX"} action={() => {
-                            setCurrentCategory(3);
-                            setCurrentArray(UIUX);
-                        }} index={3}/>
-                    </div>
-
-                    <ALL/>
-
-
-                </div>
-
-            </div>
-
-
-            <div
-                id={"drawer_div"}
-                style={{
-                    overflowY: 'auto',
-                    "--boxShadow": showDrawer && '0px 0px 10px #ffffff',
-                    "--background": !showDrawer ? 'transparent' : '#f5f1ea',
-                    "--width": showDrawer ? '65vw' : 'auto',
-
-                }}
-            >
-
-
-                <ShowButton
-                    id={"drawer_button_ham"}
-                    onClick={() => {
-                        setShowDrawer(!showDrawer)
-                    }}
-                    icon={drawer}
-                    text={""}
-                />
-
-                <ShowButton
-                    icon={about}
-                    text={"אודות"}
-
-                />
-                <ShowButton
-                    icon={message}
-                    text={"צור קשר"}
-                />
-
-                <ShowButton
-                    icon={contact}
-                    text={"0523080322"}
-                />
-            </div>
-
-
-        </div>
-
-
-    );
-
-}
-*/
-
-
 const App = (props) => {
     const [UIUX, setUIUX] = useState([
         {
@@ -523,7 +188,7 @@ const App = (props) => {
     }
     const Drawer = () => {
 
-        return <div id={"drawer"} style={{"--boxShadow":showText?"5px 5px 1rem 0rem #d7d7d7":undefined,"--backgroundColor":showText?"white":'transparent'}} >
+        return <div  id={"drawer"} style={{"--boxShadow":showText?"5px 5px 1rem 0rem #d7d7d7":undefined,"--backgroundColor":showText?"white":'transparent'}} >
             <DrawerButton
                 id={"main_drawer_button"}
                 onClick={() => {
@@ -589,7 +254,9 @@ const App = (props) => {
     }
 
     const Info = (props) => {
-        return <div id={"info"} style={{"--filter":showText?"blur(3px)":undefined,}}>
+        return <div onClick={()=>{
+            setShowText(false)
+        }} id={"info"} style={{"--filter":showText?"blur(3px)":undefined,}}>
             <img src={portofolio} id={"portofolio"}/>
             <div id={"text_on_header"}>גלול מטה כדי לראות את העבודות</div>
             <img id={"down_arrow"} src={downArrow}/>
@@ -668,6 +335,7 @@ const App = (props) => {
     const [popup, setPopup] = useState({visible: false, mockUp: ''})
     const [showText, setShowText] = useState(false)
     return <div id={"main_div"}>
+
         <Popup
             overlayStyle={{background: 'rgba(255, 255, 255,0.8)'}}
             open={popup.visible}
@@ -678,12 +346,16 @@ const App = (props) => {
 
         >
 
+
             <TransformWrapper
                 wheel={{wheelEnabled: true}}
                 >
 
                 <TransformComponent transformEnabled={true}>
                     <img style={{borderRadius: '5vh',width:'100%'}} src={popup.mockUp}/>
+                    <button onClick={()=>{setPopup({visible: false})}} style={{fontSize:"1.5rem",borderColor:'transparent',outline:'transparent',height:'1.5rem',backgroundColor:'transparent',zIndex:100,position:'absolute',top:"1rem",right:0,left:"1rem",bottom:0}}>
+                        x
+                    </button>
                 </TransformComponent>
             </TransformWrapper>
 
